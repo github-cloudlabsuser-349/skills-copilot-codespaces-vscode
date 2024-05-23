@@ -1,0 +1,20 @@
+# Create a GitHub action to email a report from a file at 6 a.m. daily
+name: Email Report
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+
+jobs:
+  email_report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Email report
+        run: |
+          echo "See attached daily report." > report.txt
+          echo "This is an email body." > email-body.txt
+          echo "This is the email subject." > email-subject.txt
+          echo "To:
